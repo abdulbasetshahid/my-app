@@ -29,7 +29,7 @@ function App() {
       </Suspense>
 
       <Suspense fallback={<h4>Bondhu asiteche...</h4>}>
-        <Friends  fetchFriends={fetchFriends}/>
+        <Friends  friendPromise={fetchFriends}/>
       </Suspense>
     </div>
   )

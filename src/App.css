@@ -22,3 +22,8 @@
   background-color: cadetblue;
   color: black;
 }
+
+.card-holder {
+  margin: 2px;
+  padding: 1px;
+}
