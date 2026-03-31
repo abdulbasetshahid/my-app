@@ -1,18 +1,37 @@
-import { Suspense } from 'react';
-import Countries from './countries/Countries';
+import UserDetail from './components/UserDetail';
+import Dashboard from './components/Dashboard';
 import './App.css'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
+import Header from './components/Header';
+import Login from './components/Login';
+import Users from './components/Users';
+import Nav from './components/Nav';
 
-var countriesPromises = fetch('https://restcountries.com/v3.1/region/asia')
-  .then((response) => response.json());
+function AppLayout() {
+  return (
+    <div className="App">
+      <Header />
+      <Nav />
+      <Outlet />
+    </div>
+  );
+}
+
+var routes = createBrowserRouter([
+  {
+    path: '/',
+    Component: AppLayout,
+    children: [
+      { index: true, Component: Dashboard },
+      { path: 'login', Component: Login },
+      { path: 'users', Component: Users },
+      { path: 'users/:id', Component: UserDetail },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div className='App'>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Countries countriesPromises={countriesPromises}/>
-      </Suspense>
-    </div>
-  )
+  return <RouterProvider router={routes} />;
 }
 
 export default App
