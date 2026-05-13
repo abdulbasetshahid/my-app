@@ -1,22 +1,29 @@
-import { Outlet } from 'react-router';
-import Header from '../../components/Header';
-import Nav from '../../components/Nav';
-import { DRAWER_TOGGLE_ID } from '../drawer/drawer';
-import Footer from '../../components/Footer';
+import { Outlet } from "react-router";
+import Header from "../../components/Header";
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 
 export default function AppLayout() {
   return (
-    <div className="App drawer min-h-screen">
-      <input id={DRAWER_TOGGLE_ID} type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex min-h-screen flex-col">
+    <div className="drawer lg:drawer-open">
+      <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content">
         <Header />
-        <main className="w-full shrink-0 grow-0 basis-auto">
+        <div className="p-4">
           <Outlet />
-        </main>
-        <Footer className="mt-auto" />
+        </div>
       </div>
-      <Nav />
+
+      <div className="drawer-side is-drawer-close:overflow-visible">
+        <label
+          htmlFor="my-drawer-4"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+          <Nav />
+        </div>
+      </div>
     </div>
   );
 }
-
